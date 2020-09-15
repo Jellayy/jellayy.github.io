@@ -9,8 +9,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 #-------------------------------
 # About Section
-author-name:   Natali Anderson
-author-avatar: 09.jpg
+author-name:   Austin Lynn Huffman
+author-avatar: https://avatars3.githubusercontent.com/u/46771056?s=460&v=4
 
 
 #-------------------------------
@@ -28,7 +28,7 @@ disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example
 
 #-------------------------------
 # Instagram Feed
-instafeed: true # To enable the instafeed, use the value true. To turn off use the value false.
+instafeed: false # To enable the instafeed, use the value true. To turn off use the value false.
 
 
 #-------------------------------
