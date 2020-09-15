@@ -45,3 +45,21 @@ ENV PYTHONPATH /app
 # Don't forget to change the second argument to your starting file's path
 CMD ["python", "./change_me.py"]
 {% endhighlight %}
+
+## Deploying:
+
+Since we put all of your work into making the most forgiving dockerfile ever, this part is pretty easy.
+
+First we have to build our image so that it can be run in a container:
+
+{% highlight bash %}
+$ docker build -t IMAGE-NAME PATH/
+{% endhighlight %}
+
+Then if your image successfully builds its as simple as a:
+
+{% highlight bash %}
+$ docker run IMAGE-NAME
+{% endhighlight %}
+
+You can add any extra arguments to your run command as needed for exposing ports, etc. However, if you know what you're doing there, you probably don't need to be reading this article.
