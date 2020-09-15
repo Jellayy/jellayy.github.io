@@ -1,26 +1,41 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2018-05-29 18:05:55 +0300
+title:  "pfSense, The Humble Beginning"
+date:   2020-08-30
 image:  11.jpg
-tags:   [Jekyll]
+tags:   [Homelab]
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+With my first virtulization server project in the works, there is still one major hurdle I have to get past before I can *really* get to work on that. My college dorm internet. This thread will be all about my findings and experience with pfSense, the first addition to my first homelab.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
 
-Jekyll also offers powerful support for code snippets:
+## Problems to Solve:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+1. My dorm only gives me a single ethernnet jack with a single connection, I'd like to be able to manage and switch that connection.
+2. There is no way for me to port forward on my dorm connection, so even though I have 400 up and down, I can't really host anything.
+3. I'd like to be able to remote into my network without making everything public to the entire dorm. (I can see everyone's game consoles when I open spotify)
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+## The Hardware:
+
+![Hardware Image](/images/20200830_171851.jpg)
+Originally serving time in use in an ASU linux development class, this box eventually made it into a lot of "computer parts" in a surplus auction. A friend and I got a couple of these along with a bunch of other disregarded university hardware for basically nothing (ASU also did *not* bother clearing off the drive). This box ended up being a really good canidate for pfSense.
+
+CPU: Intel Atom D510 (2c4t@1.66GHz, 13W)
+
+RAM: 1GB DDR2
+
+HDD: WD Scorpio Blue 160GB
+
+MOBO: 1 SODIMM Slot, 2 1GIG Ethernet, VGA, Lots of Serial
+
+The CPU actually ended up being a lot more than I thought it would be. I was expecting 1c2t honestly. I could get some mildly serious stuff running on here with just a simple RAM upgrade. That plus the dual 1GIG ports made this almost perfect for my first pfSense box.
+
+
+
+## Setup:
+
+Setup was actually pretty painless all things considered. The only issue I faced was some wonky stuff with the bootable USB drive I had with the [pfSense iso](https://www.pfsense.org/download/) on it constantly formatting itself for no reason. After that, I followed the guided setup, plugged into the LAN port to finish things up, and that was it. For open-source router software, that was way more plug-and-play than I expected.
+
+![Blending In..](/images/blending-in.png)
+
+Hopefully this will allow me to not raise too much suspicion if someone were to check the dorm network. A device named "xbox 360" on ethernet pumping out a lot of encrypted traffic looks normal right?
