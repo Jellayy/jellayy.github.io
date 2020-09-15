@@ -48,7 +48,7 @@ CMD ["python", "./change_me.py"]
 
 ## Deploying:
 
-Since we put all of your work into making the most forgiving dockerfile ever, this part is pretty easy.
+Since we put all of our work into making the most forgiving dockerfile ever, this part is pretty easy.
 
 First we have to build our image so that it can be run in a container:
 
