@@ -2,7 +2,7 @@
 layout: post
 title:  "Deploying Python Code to Docker, the Easy Way"
 date:   2020-09-07
-image:  11.jpg
+image:  docker.png
 tags:   [Programming]
 ---
 After teaching myself Python through a few projects, I can finally 24/7 host them on something other than an old laptop: my new virtulization server (post coming soonish). I heard a few good things about docker, so I spun up a headless ubuntu server VM and installed docker with portainer. However, I ran into one big problem. All the guides I could find online about deploying python to docker all either involve single-file programs or programs with "proper python project structure" and let's face it, no one does that.
