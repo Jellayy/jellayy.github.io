@@ -18,7 +18,7 @@ With my first virtulization server project in the works, there is still one majo
 ## The Hardware:
 
 ![Hardware Image](/images/20200830_171851.jpg)
-Originally serving time in use in an ASU linux development class, this box eventually made it into a lot of "computer parts" in a surplus auction. A friend and I got a couple of these along with a bunch of other disregarded university hardware for basically nothing (ASU also did *not* bother clearing off the drive). This box ended up being a really good canidate for pfSense.
+Originally serving time in use in an ASU linux development class, this box eventually made it into a lot of "computer parts" in a surplus auction. A friend and I got a couple of these along with a bunch of other disregarded university hardware for basically nothing (ASU also did not bother clearing off the drive). This box ended up being a really good canidate for pfSense.
 
 CPU: Intel Atom D510 (2c4t@1.66GHz, 13W)
 
