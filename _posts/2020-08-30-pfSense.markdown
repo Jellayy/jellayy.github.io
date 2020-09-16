@@ -49,3 +49,7 @@ Currently, I'm simply using one of the ports on the pfSense box for my WAN inter
 A cool added bonus I'm now able to do with pfSense is DNS Resolving along with static IPs. The process for doing this was fairly simple as well.
 
 The first thing you want to do is set up your host with a static IP. First create a DHCP static mapping in pfSense by going to Services > DHCP Server > LAN and scrolling to the bottom of the page to make a new entry. I'll be using my proxmox container for plex for this example.
+
+![DHCP Entry](/img/pfsense-dhcp-entry.jpg)
+
+Simply replace the respective values with your devices MAC address, any identifier you want, the static address you're assigning (make sure it is outside the range of your DHCP server), a hostname and description, then make sure to create an ARP table entry so you can refrence you entries at any time
