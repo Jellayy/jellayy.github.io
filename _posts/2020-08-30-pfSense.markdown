@@ -42,4 +42,4 @@ Hopefully this will allow me to not raise too much suspicion if someone were to 
 
 ![Switch](/img/pfsense-switch.jpg)
 
-Currently, I'm simply using one of the ports on the pfSense box for my WAN interface and the other for my LAN interface going straight into a tiny, USB powered, unmanaged switch. As my homelab scales up, this will definitely be a canidate for an upgrade. I'd like to get a rack-mountable managed cisco switch as I am very familiar with the Cisco iOS and could easily set up VLANs and ACLs on it.
+Currently, I'm simply using one of the ports on the pfSense box for my WAN interface and the other for my LAN interface going straight into a tiny, USB powered, unmanaged switch. As my homelab scales up, this will definitely be a canidate for an upgrade. This tiny thing doesn't like it when running local iso transfers to my server and other downloads at the same time. I'd like to get a rack-mountable managed cisco switch as I am very familiar with the Cisco iOS and could easily set up VLANs and ACLs on it.
