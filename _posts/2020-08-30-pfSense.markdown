@@ -36,6 +36,8 @@ The CPU actually ended up being a lot more than I thought it would be. I was exp
 
 Setup was actually pretty painless all things considered. The only issue I faced was some wonky stuff with the bootable USB drive I had with the [pfSense iso](https://www.pfsense.org/download/) on it constantly formatting itself for no reason. After that, I followed the guided setup, plugged into the LAN port to finish things up, and that was it. For open-source router software, that was way more plug-and-play than I expected.
 
-![Blending In..](/img/blending-in.png)
+![Blending In..](/img/pfsense-blending-in.png)
 
 Hopefully this will allow me to not raise too much suspicion if someone were to check the dorm network. A device named "xbox 360" on ethernet pumping out a lot of encrypted traffic looks normal right?
+
+![Switch](/img/pfsense-switch.jpg)
