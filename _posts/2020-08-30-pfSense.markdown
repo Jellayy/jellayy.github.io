@@ -43,3 +43,9 @@ Hopefully this will allow me to not raise too much suspicion if someone were to 
 ![Switch](/img/pfsense-switch.jpg)
 
 Currently, I'm simply using one of the ports on the pfSense box for my WAN interface and the other for my LAN interface going straight into a tiny, USB powered, unmanaged switch. As my homelab scales up, this will definitely be a canidate for an upgrade. This tiny thing doesn't like it when running local iso transfers to my server and other downloads at the same time. I'd like to get a rack-mountable managed cisco switch as I am very familiar with the Cisco iOS and could easily set up VLANs and ACLs on it.
+
+
+## DNS Resolving:
+A cool added bonus I'm now able to do with pfSense is DNS Resolving along with static IPs. The process for doing this was fairly simple as well.
+
+The first thing you want to do is set up your host with a static IP. First create a DHCP static mapping in pfSense by going to Services > DHCP Server > LAN and scrolling to the bottom of the page to make a new entry. I'll be using my proxmox container for plex for this example.
