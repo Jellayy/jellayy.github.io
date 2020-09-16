@@ -41,3 +41,5 @@ Setup was actually pretty painless all things considered. The only issue I faced
 Hopefully this will allow me to not raise too much suspicion if someone were to check the dorm network. A device named "xbox 360" on ethernet pumping out a lot of encrypted traffic looks normal right?
 
 ![Switch](/img/pfsense-switch.jpg)
+
+Currently, I'm simply using one of the ports on the pfSense box for my WAN interface and the other for my LAN interface going straight into a tiny, USB powered, unmanaged switch. As my homelab scales up, this will definitely be a canidate for an upgrade. I'd like to get a rack-mountable managed cisco switch as I am very familiar with the Cisco iOS and could easily set up VLANs and ACLs on it.
