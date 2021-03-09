@@ -12,4 +12,8 @@ This post in no way supports or promotes the act of piracy. Piracy is illegal an
 
 ## Preface:
 
-My media stack is hosted across two different servers. The first server is a Dell Poweredge R720 with 2 Xeon E5-2640 CPUs that acts as my NAS. The other is a custom built virtulization server with two Xeon E5-2658 v2 CPUS. If anyone is following along with only one server, you can combine all of these services onto one; however, for my purposes, I will be hosting everything related to acquisition and downloading on my NAS with all distribution and monitoring services on my virtulization server.
+My media stack is hosted across two different servers. The first server is a Dell Poweredge R720 with 2 Xeon E5-2640 CPUs that acts as my NAS. The other is a custom built virtulization server with two Xeon E5-2658 v2 CPUs. If anyone is following along with only one server, you can combine all of these services onto one; however, for my purposes, I will be hosting everything related to acquisition and downloading on my NAS with all distribution and monitoring services on my virtulization server.
+
+## Initial Setup:
+
+On both of my servers I will be setting up dedicated Ubuntu Live Server VMs in Proxmox. You could use any other distribution or even any other OS with docker support; however, the rest of this post will be centered around this setup.
