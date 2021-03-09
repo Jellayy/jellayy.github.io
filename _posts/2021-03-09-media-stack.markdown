@@ -17,3 +17,15 @@ My media stack is hosted across two different servers. The first server is a Del
 ## Initial Setup:
 
 On both of my servers I will be setting up dedicated Ubuntu Live Server VMs in Proxmox. You could use any other distribution or even any other OS with docker support; however, the rest of this post will be centered around this setup.
+
+## Setting Static IPs:
+
+For this sort of setup it is a very good idea to have everything running on static IP addresses. The easiest way to do this on Ubuntu Server is thorugh netplan. Use whatever addressing scheme you have set up in your network.
+
+{% highlight bash %}
+$ sudo nano /etc/netplan/01-netcfg.yaml
+{% endhighlight %}
+
+{% highlight yaml %}
+
+{% endhighlight %}
