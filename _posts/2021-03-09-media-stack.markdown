@@ -5,3 +5,11 @@ date:   2021-03-09
 image:  pfsense.png
 tags:   [Homelab]
 ---
+
+## Disclaimer:
+
+This post in no way supports or promotes the act of piracy. Piracy is illegal and you should only ever acquire media you own or have legal access to. The intent of this post is purely educational in nature and serves to build IT knowledge of media distribution servers.
+
+## Preface:
+
+My media stack is hosted across two different servers. The first server is a Dell Poweredge R720 with 2 Xeon E5-2640 CPUs that acts as my NAS. The other is a custom built virtulization server with two Xeon E5-2658 v2 CPUS. If anyone is following along with only one server, you can combine all of these services onto one; however, for my purposes, I will be hosting everything related to acquisition and downloading on my NAS with all distribution and monitoring services on my virtulization server.
