@@ -38,3 +38,7 @@ network:
    nameservers:
     addresses: [192.168.1.1]
 {% endhighlight %}
+
+{% highlight bash %}
+$ sudo netplan apply
+{% endhighlight %}
