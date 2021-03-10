@@ -68,7 +68,13 @@ $ sudo apt install docker-ce docker-ce-cli containerd.io
 $ sudo docker run hello-world
 {% endhighlight %}
 
-If hello world displayed its output that means everything is working great. Installing portainer is then as easy as
+If hello world displayed its output that means everything is working great. For the future we're going to make things easier by adding your user to the docker group.
+
+{% highlight bash %}
+$ sudo usermod -aG docker <YOUR-USER>
+{% endhighlight %}
+ 
+Then getting portainer running is as easy as:
 
 {% highlight bash %}
 $ docker volume create portainer_data
