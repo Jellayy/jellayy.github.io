@@ -27,5 +27,14 @@ $ sudo nano /etc/netplan/01-netcfg.yaml
 {% endhighlight %}
 
 {% highlight yaml %}
-
+network:
+ version: 2
+ renderer: networkd
+ ethernets:
+  ens5:
+   dhcp4: no
+   addresses: [192.168.1.6/24]
+   gateway4: 192.168.1.1
+   nameservers:
+    addresses: [192.168.1.1]
 {% endhighlight %}
