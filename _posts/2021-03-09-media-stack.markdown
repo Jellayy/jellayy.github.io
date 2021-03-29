@@ -43,6 +43,46 @@ network:
 $ sudo netplan apply
 {% endhighlight %}
 
+## Mounting SMB Shares:
+
+My setup will be utilizing an SMB share of my array from a TrueNAS Core VM. I mount through fstab on both servers like so:
+
+{% highlight bash %}
+$ sudo apt install cifs-utils
+{% endhighlight %}
+
+{% highlight bash %}
+$ sudo nano /etc/fstab
+{% endhighlight %}
+
+{% highlight bash %}
+//truenas.jellayy.com/Data /Data cifs credentials=/etc/share-credentials,uid=1000,gid=1000 0 0
+{% endhighlight %}
+
+Create credentials file:
+
+{% highlight bash %}
+$ sudo nano /etc/share-credentials
+{% endhighlight %}
+
+{% highlight bash %}
+username=user
+password=password
+{% endhighlight %}
+
+Secure credentials file:
+
+{% highlight bash %}
+$ sudo chown root: /etc/share-credentials
+$ sudo chmod 600 /etc/share-credentials
+{% endhighlight %}
+
+Mount share:
+
+{% highlight bash %}
+$ sudo mount -a
+{% endhighlight %}
+
 ## Installing Docker and Portainer:
 
 You can follow Docker's official guide for installing on Ubuntu [here](https://docs.docker.com/engine/install/ubuntu/). For those of you (including me in the future) that are spamming copy paste to follow along, here's some lines:
