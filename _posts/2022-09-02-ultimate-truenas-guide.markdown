@@ -1,8 +1,8 @@
 ---
 title: "The Ultimate Virtualized TrueNAS Guide"
+tagline: "This is a custom tagline content which overrides the *default* page excerpt."
 header:
   image: /assets/images/dash.png
-  caption: "Ayo I can write text here"
 toc: true
 toc_sticky: true
 categories:
