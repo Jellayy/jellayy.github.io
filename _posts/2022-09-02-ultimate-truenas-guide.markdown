@@ -1,10 +1,13 @@
 ---
-layout: post
-title:  "The Ultimate Virtualized TrueNAS Guide"
-date:   2022-09-02
-image:  /ultimate-truenas-guide/dash.png
-tags:   [Homelab]
+title: "Post: Standard"
+categories:
+  - Post Formats
+tags:
+  - Post Formats
+  - readability
+  - standard
 ---
+
 I've been running TrueNAS Core virtualized under Proxmox for all of my storage management for the better part of two years now. For my purposes up until now, a very simple setup with a few 3TB drives passed through has been perfect and extremely resilient. I've completely destroyed my TrueNAS VM multiple times and was able to recreate the VM in Proxmox, have TrueNAS auto import my pool, and I was back up and running.
 
 However, I recently impulse bought 64TB worth of SAS drives on eBay (as we all do) and thought it would be a great time to make the best virtualized TrueNAS setup I can. And, of course, I'll be making this guide alongside it.
