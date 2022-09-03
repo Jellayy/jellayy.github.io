@@ -2,7 +2,7 @@
 title: "The Ultimate Virtualized TrueNAS Guide"
 tagline: "This is a custom tagline content which overrides the *default* page excerpt."
 header:
-  image: /assets/images/dash.png
+  image: /2022-09-02-ultimate-truenas-guide/assets/images/banner.png
 toc: true
 toc_sticky: true
 categories:
@@ -33,7 +33,7 @@ As of writing this guide, I am still using TrueNAS Core and will be for the fors
 
 After downloading TrueNAS, we can upload the ISO to Proxmox:
 
-![Uploading the TrueNAS ISO to Proxmox](/img/ultimate-truenas-guide/iso-upload.png)
+![Uploading the TrueNAS ISO to Proxmox](/assets/images/2022-09-02-ultimate-truenas-guide/iso-upload.png)
 
 # Creating the VM
 
@@ -102,7 +102,8 @@ qm set 100 -scsi1 /dev/disk/by-id/scsi-35000cca262027d20
 > Be sure to use your VM identifier and incrament the drive number as you add drives
 
 If everything was done correctly, you should see any drives you add in your VM's hardware section:
-![Passed drive in hardware section](/img/ultimate-truenas-guide/individual-drive-pass.png)
+
+![Passed drive in hardware section](/assets/images/2022-09-02-ultimate-truenas-guide/individual-drive-pass.png)
 
 ### Controller Passing
 
@@ -187,7 +188,8 @@ hostpci0: 03:00.0,pcie=1
 {% endhighlight %}
 
 You should then see your device on the VM's hardware section:
-![Passed drive controller](/img/ultimate-truenas-guide/pci-pass.png)
+
+![Passed drive controller](/assets/images/2022-09-02-ultimate-truenas-guide/pci-pass.png)
 
 # IP Addressing
 
@@ -211,10 +213,12 @@ Next comes creating your VDevs, you can read the [Creating Pools page on the Tru
 
 For my setup of 8 8TB drives, I will be making two RAIDZ1 VDevs of 4 drives each. This allows me to lose one drive in each VDev without data loss.
 
-![Pool creation](/img/ultimate-truenas-guide/pool-creation.png)
+![Pool creation](/assets/images/2022-09-02-ultimate-truenas-guide/pool-creation.png)
 
 If everything worked up to this point, your dashboard should now look similar to this:
-![dashboard](/img/ultimate-truenas-guide/dash.png)
+
+![dashboard](/assets/images/2022-09-02-ultimate-truenas-guide/dash.png)
+
 And you're (for the most part) done! From here you can add different shares, accounts, and permissions to your pool, links for the following info below.
 
 # Managing Users
