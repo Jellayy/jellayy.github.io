@@ -2,7 +2,7 @@
 title: "The Ultimate Virtualized TrueNAS Guide"
 tagline: "This is a custom tagline content which overrides the *default* page excerpt."
 header:
-  image: /2022-09-02-ultimate-truenas-guide/assets/images/banner.png
+  image: /assets/images/2022-09-02-ultimate-truenas-guide/banner.png
 toc: true
 toc_sticky: true
 categories:
