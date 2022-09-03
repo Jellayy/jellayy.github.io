@@ -1,5 +1,8 @@
 ---
 title: "The Ultimate Virtualized TrueNAS Guide"
+header:
+  image: /assets/images/dash.png
+  caption: "Ayo I can write text here"
 toc: true
 toc_sticky: true
 categories:
