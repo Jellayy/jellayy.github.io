@@ -1,5 +1,7 @@
 ---
-title: "Post: Standard"
+title: "The Ultimate Virtualized TrueNAS Guide"
+toc: true
+toc_sticky: true
 categories:
   - Post Formats
 tags:
