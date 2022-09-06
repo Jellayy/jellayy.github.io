@@ -20,18 +20,12 @@ Since most of your management of Proxmox is going to be remote, getting your net
 
 First for me is setting up a static IP. Personally, I also give this IP a custom DNS entry in pfSense as well. See my pfSense guide for instructions on how to do that.
 
-{% capture fig_img %}
-![Foo]({{ '/assets/images/2022-02-15-proxmox-setup/static-ip.jpg' | relative_url }})
-{% endcapture %}
-
-<figure>
-  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
-</figure>
+![Static-ip]({{ site.url }}{{ site.baseurl }}/assets/images/2022-02-15-proxmox-setup/static-ip.jpg)
 
 After this, don't forget to change the address in `/etc/hosts` as well, or else the webUI will open on the wrong address and be unaccessible. You also won't be able to authenticate with SSH if this happens.
 
 # Remove Subscription Message
-![Annoying Message](/images/2022-02-15-proxmox-setup/annoying-message.png)
+![Annoying Message]({{ site.url }}{{ site.baseurl }}/assets/images/2022-02-15-proxmox-setup/annoying-message.png)
 
 # PVEDiscordDark
 
@@ -94,4 +88,4 @@ qm set VM_ID -scsiX /dev/disk/by-id/DRIVE_ID
 
 If you've done everything right, your hardware tab should look something like this:
 
-![Drives](/images/2022-02-15-proxmox-setup/drive-by-id.jpg)
+![Drives]({{ site.url }}{{ site.baseurl }}/assets/images/2022-02-15-proxmox-setup/drive-by-id.jpg)
