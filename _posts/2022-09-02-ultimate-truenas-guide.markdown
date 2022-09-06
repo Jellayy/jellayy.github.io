@@ -1,16 +1,13 @@
 ---
 title: "The Ultimate Virtualized TrueNAS Guide"
-tagline: "This is a custom tagline content which overrides the *default* page excerpt."
 header:
   image: /assets/images/2022-09-02-ultimate-truenas-guide/banner.png
 toc: true
 toc_sticky: true
 categories:
-  - Post Formats
+  - Guides
 tags:
-  - Post Formats
-  - readability
-  - standard
+  - Homelab
 ---
 
 I've been running TrueNAS Core virtualized under Proxmox for all of my storage management for the better part of two years now. For my purposes up until now, a very simple setup with a few 3TB drives passed through has been perfect and extremely resilient. I've completely destroyed my TrueNAS VM multiple times and was able to recreate the VM in Proxmox, have TrueNAS auto import my pool, and I was back up and running.
