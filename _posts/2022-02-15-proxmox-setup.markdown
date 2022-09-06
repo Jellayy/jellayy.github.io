@@ -20,7 +20,9 @@ Since most of your management of Proxmox is going to be remote, getting your net
 
 First for me is setting up a static IP. Personally, I also give this IP a custom DNS entry in pfSense as well. See my pfSense guide for instructions on how to do that.
 
-![Static IP](/images/2022-02-15-proxmox-setup/static-ip.jpg)
+{% capture fig_img %}
+![Foo]({{ '/assets/images/2022-02-15-proxmox-setup/static-ip.jpg' | relative_url }})
+{% endcapture %}
 
 After this, don't forget to change the address in `/etc/hosts` as well, or else the webUI will open on the wrong address and be unaccessible. You also won't be able to authenticate with SSH if this happens.
 
