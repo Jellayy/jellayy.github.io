@@ -27,6 +27,27 @@ After this, don't forget to change the address in `/etc/hosts` as well, or else 
 # Remove Subscription Message
 ![Annoying Message]({{ site.url }}{{ site.baseurl }}/assets/images/2022-02-15-proxmox-setup/annoying-message.png)
 
+1. Make a backup of `proxmoxlib.js`
+{% highlight bash %}
+cd /usr/share/javascript/proxmox-widget-toolkit
+cp proxmoxlib.js proxmoxlib.js.bak
+{% endhighlight %}
+
+2. Edit `proxmoxlib.js` to replace the following function call:
+{% highlight javascript %}
+Ext.Msg.show({
+  title: gettext('No valid subscription'),
+{% endhighlight %}
+{% highlight javascript %}
+void({ //Ext.Msg.show({
+  title: gettext('No valid subscription'),
+{% endhighlight %}
+
+3. Restart the proxmox web service
+{% highlight bash %}
+systemctl restart pveproxy.service
+{% endhighlight %}
+
 # PVEDiscordDark
 
 I love the Proxmox web interface, but it's a little too bright. Thankfully, Weilbyte maintains a great and easy to install dark theme for the UI.
