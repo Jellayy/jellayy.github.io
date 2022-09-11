@@ -88,25 +88,3 @@ After that, you can test your changes with:
 apt update
 apt dist-upgrade
 {% endhighlight %}
-
-# Install TrueNAS Core
-
-Many people will simply setup a ZFS array for the disks on their server. However, I really like the featureset and management that the TrueNAS Core OS provides, so I virtualize it and pass all my drives to it. (Note: These drives are for shared storage and backups, my VM storage is on an SSD)
-
-The TrueNAS installation is pretty straightforward; however, the one part you need to pay attention to is passing your disks. The UI only allows passing disks by sd#, which can change depending on how the drives initialize at boot. The proper practice is to add the disks by ID, which can only be done through the terminal.
-
-To see disk IDs run:
-
-{% highlight bash %}
-ls -l /dev/disk/by-id
-{% endhighlight %}
-
-Then add a disk to your VM by running the following command, incramenting the scsi ID as you go.
-
-{% highlight bash %}
-qm set VM_ID -scsiX /dev/disk/by-id/DRIVE_ID
-{% endhighlight %}
-
-If you've done everything right, your hardware tab should look something like this:
-
-![Drives]({{ site.url }}{{ site.baseurl }}/assets/images/2022-02-15-proxmox-setup/drive-by-id.jpg)
