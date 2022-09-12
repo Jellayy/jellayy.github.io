@@ -23,7 +23,7 @@ With my first virtulization server project in the works, there is still one majo
 
 ## The Hardware:
 
-![Hardware Image]({{ site.url }}{{ site.baseurl }}/assets/images/2020-08-30-pfsense-setup/pfsense-hardware.png)
+![Hardware Image]({{ site.url }}{{ site.baseurl }}/assets/images/2020-08-30-pfsense-setup/pfsense-hardware.jpg)
 Originally serving time in use in an ASU linux development class, this box eventually made it into a lot of "computer parts" in a surplus auction. A friend and I got a couple of these along with a bunch of other disregarded university hardware for basically nothing (ASU also did not bother clearing off the drive). This box ended up being a really good canidate for pfSense.
 
 CPU: Intel Atom D510 (2c4t@1.66GHz, 13W)
@@ -46,7 +46,7 @@ Setup was actually pretty painless all things considered. The only issue I faced
 
 Hopefully this will allow me to not raise too much suspicion if someone were to check the dorm network. A device named "xbox 360" on ethernet pumping out a lot of encrypted traffic looks normal right?
 
-![Switch]({{ site.url }}{{ site.baseurl }}/assets/images/2020-08-30-pfsense-setup/pfsense-switch.png)
+![Switch]({{ site.url }}{{ site.baseurl }}/assets/images/2020-08-30-pfsense-setup/pfsense-switch.jpg)
 
 Currently, I'm simply using one of the ports on the pfSense box for my WAN interface and the other for my LAN interface going straight into a tiny, USB powered, unmanaged switch. As my homelab scales up, this will definitely be a canidate for an upgrade. This tiny thing doesn't like it when running local iso transfers to my server and other downloads at the same time. I'd like to get a rack-mountable managed cisco switch as I am very familiar with the Cisco iOS and could easily set up VLANs and ACLs on it.
 
