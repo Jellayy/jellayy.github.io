@@ -1,5 +1,5 @@
 ---
-title: "WIP: Traefik"
+title: "WIP: Traefik Reverse Proxy in Docker with TLS Certs"
 header:
   image: /assets/images/2022-09-02-ultimate-truenas-guide/banner.png
 toc: true
@@ -105,4 +105,50 @@ providers:
     directory: /etc/traefik/dynamic
     watch: true
 {% endhighlight %}
+
+## Docker
+
+### Proxy Network
+
+Create a new attachable bridge network in Docker for Traefik to use. This can be done in the docker CLI or through a managment portal such as Portainer. We will attach our Traefik container and all other proxied containers to this network.
+
+{% highlight bash %}
+docker network create -d bridge --attachable proxy
+{% endhighlight %}
+
+![Portainer Network Create]({{ site.url }}{{ site.baseurl }}/assets/images/2022-09-25-traefik/portainer-network-create.png)
+
+### Creating the Container
+
+Deploy Traefik using Docker Compose:
+
+{% highlight yaml %}
+version: '3'
+
+services:
+  traefik:
+    image: "traefik:v2.5"
+    container_name: "traefik"
+    environment:
+      - CF_API_EMAIL=YOUR_EMAIL
+      - CF_DNS_API_TOKEN=YOUR_API_KEY
+      - CF_ZONE_API_TOKEN=YOUR_API_KEY
+    networks:
+      - proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      # (Optional) Expose Dashboard
+      - "42069:8080"  # Don't do this in production!
+    volumes:
+      - /config/docker/traefik-logs:/var/log/traefik
+      - /config/docker/traefik:/etc/traefik
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  proxy:
+    external: true
+{% endhighlight %}
+
+> Leaving your API keys exposed in docker-compose like this is not recommended. Environment variables in docker containers also aren't particularly secure. Running a secrets agent like the one built in to docker-swarm is recommended. Will I be covering that here? Absolutely not.
 
