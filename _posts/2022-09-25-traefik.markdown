@@ -1,0 +1,108 @@
+---
+title: "WIP: Traefik"
+header:
+  image: /assets/images/2022-09-02-ultimate-truenas-guide/banner.png
+toc: true
+toc_sticky: true
+categories:
+  - Guides
+tags:
+  - Homelab
+---
+
+# Configuring Your Domain
+
+## Cloudflare DNS
+
+This setup will be based on using the Cloudflare API to manage DNS on your domain. We will be using DNS challenges to issue certs with LetsEncrypt.
+
+### Import your domain as a Cloudflare site (Optional)
+
+If you purchased your domain through cloudflare, feel free to skip this step. If you got your domain through another registrar, you can register your site through cloudflare using the steps below.
+
+#### Change your DNS servers to Cloudflare's
+
+If you haven't purchased your domain through Cloudflare, you can still continue with this guide by changing the DNS servers your domain uses over to Cloudflare's. Change your nameservers to: `connie.ns.cloudflare.com` and `cris.ns.cloudflare.com`
+
+Here's an example using Hostinger's dashboard:
+
+![Hostinger Example]({{ site.url }}{{ site.baseurl }}/assets/images/2022-09-25-traefik/nameservers.png)
+
+#### Add your site to Cloudflare
+
+After changing your DNS servers, you can add your site to Cloudflare under Websites>Add a Site. For our purposes, the free plan works fine.
+
+### Create an API Key
+
+Head over to the [Cloudflare API Tokens Page](https://dash.cloudflare.com/profile/api-tokens) and create a new API Token with `Zone.Zone` and `Zone.DNS` permissions on either just the sites you want or all of your sites.
+
+![Cloudflare API Key]({{ site.url }}{{ site.baseurl }}/assets/images/2022-09-25-traefik/apikey.png)
+
+# Deploying Traefik
+
+## File Structure
+
+Deploying Traefik isn't completely plug-and-play and needs some files to get started.
+
+Wherever you wish to place your Traefik configuration files, create the following file structure. You'll need to create all files listed, traefik does not create them itself and will yell at you if you don't. Create `acme.json` as an empty file for traefik to fill, we will configure `traefik.yml` in the next step.
+
+{% highlight %}
+traefik
+│   traefik.yml   
+│
+└───acme
+│   │   acme.json
+│   
+└───dynamic
+{% endhighlight %}
+
+### traefik.yml
+
+Below is an example basic configuration of `traefik.yml` that will serve our purposes for now:
+
+{% highlight yaml %}
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false  # true by default
+
+# (Optional) Log information
+log:
+   level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+   format: common  # common, json, logfmt
+   filePath: /var/log/traefik/traefik.log
+
+# (Optional) Enable API and Dashboard
+api:
+  dashboard: true  # true by default
+  insecure: true  # Don't do this in production!
+
+# Entry Points configuration
+entryPoints:
+  http:
+    address: :80
+  https:
+    address: :443
+
+# Configure your CertificateResolver here...
+certificatesResolvers:
+   letsEncrypt:
+     acme:
+       email: YOUR_EMAIL
+       storage: /etc/traefik/acme/acme.json
+       dnsChallenge:
+         provider: cloudflare
+         resolvers:
+           - 1.1.1.1:53
+           - 8.8.8.8:53
+         delayBeforeCheck: 0
+
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false  # Default is true
+  file:
+    # watch for dynamic configuration changes
+    directory: /etc/traefik/dynamic
+    watch: true
+{% endhighlight %}
+
