@@ -223,7 +223,7 @@ Github: [configuration.yml](https://github.com/Jellayy/jellayy.github.io/blob/ma
 
 There's a lot of stuff to configure in here, but to get started there's only a few things we need to do:
 
-1. Create a `jwt_secret`, an alphanumeric key of 64 characters
+- Create a `jwt_secret`, an alphanumeric key of 64 characters
 
 {% highlight yaml %}
 jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
@@ -231,7 +231,7 @@ jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
 
 > I know what the top of the site says, but please make your own and don't copy paste this
 
-2. Change the `default_redirection_url` to the address you will give Authelia in Traefik
+- Change the `default_redirection_url` to the address you will give Authelia in Traefik
 
 {% highlight yaml %}
 default_redirection_url: https://auth.example.com
@@ -243,7 +243,7 @@ Github: [users_database.yml](https://github.com/Jellayy/jellayy.github.io/blob/m
 
 Create your first user with the steps below:
 
-1. Change your displayname:
+- Change your displayname:
 
 {% highlight yaml %}
 users:
@@ -251,10 +251,10 @@ users:
     displayname: "Example"
 {% endhighlight %}
 
-2. Change your hashed password:
+- Change your hashed password:
 
 {% highlight yaml %}
-password: "$6$rounds=50000$BpLnfgDsc2WD8F2q$Zis.ixdg9s/UOJYrs56b5QEZFiZECu0qZVNsIYxBaNJ7ucIL.nlxVCT5tqh8KHG8X4tlwCFm5r6NTOZZ5qRFN/"  # yamllint disable-line rule:line-length
+password: "$argon2id$v=19$m=65536,t=3,p=4$d3hKRUpCSUhLMEhxVXdoZg$eChQ4l0qnt4oCE7Yaw+bVp1wi7/CO3PqlqEY+udUkYc"  # yamllint disable-line rule:line-length
 {% endhighlight %}
 
 > Authelia provides a tool for creating hashed passwords using the proper hashing algorithm. Generate a password by running `docker run authelia/authelia:latest authelia hash-password 'YOUR_PASSWORD'`
