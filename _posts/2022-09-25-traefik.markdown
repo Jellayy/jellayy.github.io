@@ -237,14 +237,14 @@ jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
 default_redirection_url: https://auth.example.com
 {% endhighlight %}
 
-- Change the provided `access_control` policy. The provided configuration shows you how to specify different levels of auth on different domains, but I'm going to enable two-factor for everything
+- Change the provided `access_control` policy. [Authelia Access-Control Docs](https://www.authelia.com/configuration/security/access-control/)
 
 {% highlight yaml %}
 access_control:
   default_policy: deny
   rules:
     # Rules applied to everyone
-    - domain: example.com
+    - domain: service.example.com
       policy: two_factor
 {% endhighlight %}
 
@@ -319,7 +319,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.authelia.rule=Host(`auth.example.com`)" # Change to your domain
       - "traefik.http.routers.authelia.entrypoints=https"
-      - "traefik.http.routers.homer.tls=true"
+      - "traefik.http.routers.authelia.tls=true"
+      - "traefik.http.routers.authelia.tls.certresolver=letsEncrypt"
       - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.example.com" # Change to your domain
       - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
       - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
@@ -329,9 +330,43 @@ services:
     environment:
       - TZ=America/Phoenix
     healthcheck:
-      diable: true
+      disable: true
 
 networks:
   proxy:
     external: true
 {% endhighlight %}
+
+## Adding Docker Services to Authelia
+
+Much like with Traefik, it is very easy to add containers to Authelia. Here's our same Homer example from before, but this time with Authelia:
+
+{% highlight yaml %}
+---
+version: "2"
+services:
+  homer:
+    image: b4bz/homer
+    container_name: homer
+    networks:
+      - proxy # Required for Traefik
+    volumes:
+      - /homer_assets:/www/assets
+    user: 1000:1000
+    labels:
+      - "traefik.docker.network=proxy"
+      - "traefik.enable=true"
+      - "traefik.http.routers.homer.rule=Host(`example.com`)"
+      - "traefik.http.routers.homer.entrypoints=https"
+      - "traefik.http.routers.homer.tls=true"
+      - "traefik.http.services.homer.loadbalancer.server.port=8080"
+      - "traefik.http.routers.homer.tls.certresolver=letsEncrypt"
+      - "traefik.http.routers.homer.middlewares=authelia@docker" # This line adds the Authelia middleware to Homer
+    restart: unless-stopped
+
+networks:
+  proxy: # Add a refrence to traefik's docker network here
+    external: true
+{% endhighlight %}
+
+> With version 2.5 of traefik, you'll get Traefik logs saying `middleware \"authelia@docker\" does not exist`. These logs are a lie. This is apparently a known issue and Authelia is working correctly if you see these. I have not tested to see if this is fixed in newer versions.
