@@ -1,0 +1,43 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false  # true by default
+
+# (Optional) Log information
+log:
+   level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+   format: common  # common, json, logfmt
+   filePath: /var/log/traefik/traefik.log
+
+# (Optional) Enable API and Dashboard
+api:
+  dashboard: true  # true by default
+  insecure: true  # Don't do this in production!
+
+# Entry Points configuration
+entryPoints:
+  http:
+    address: :80
+  https:
+    address: :443
+
+# Configure your CertificateResolver here...
+certificatesResolvers:
+   letsEncrypt:
+     acme:
+       email: YOUR_EMAIL
+       storage: /etc/traefik/acme/acme.json
+       dnsChallenge:
+         provider: cloudflare
+         resolvers:
+           - 1.1.1.1:53
+           - 8.8.8.8:53
+         delayBeforeCheck: 0
+
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false  # Default is true
+  file:
+    # watch for dynamic configuration changes
+    directory: /etc/traefik/dynamic
+    watch: true

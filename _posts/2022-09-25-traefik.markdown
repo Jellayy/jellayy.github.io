@@ -10,6 +10,16 @@ tags:
   - Homelab
 ---
 
+# Credits
+Reverse Proxies and setting up authentication on them can be very hard to wrap your head around and get working at first. While I did my best and will continue to make this guide as comprehensive as possible, there are a few resources that made this guide possible:
+
+[Joshua Avalon - Setup Traefik v2 Step by Step](https://joshuaavalon.io/setup-traefik-v2-step-by-step)
+[Techno Tim - 2 Factor Auth and Single Sign on with Authelia](https://docs.technotim.live/posts/authelia-traefik/)
+
+# Prerequisites
+
+All files used in this guide can be found [here](https://github.com/Jellayy/jellayy.github.io/tree/master/resources/2022-09-25-traefik)
+
 # Configuring Your Domain
 
 ## Cloudflare DNS
@@ -58,7 +68,9 @@ traefik
 
 ### traefik.yml
 
-Below is an example basic configuration of `traefik.yml` that will serve our purposes for now:
+Below is an example basic configuration of `traefik.yml` that will serve our purposes for now
+
+Github: [traefik.yml](https://github.com/Jellayy/jellayy.github.io/tree/master/resources/2022-09-25-traefik/traefik/traefik.yml)
 
 {% highlight yaml %}
 global:
@@ -120,7 +132,9 @@ docker network create -d bridge --attachable proxy
 
 ### Creating the Container
 
-Deploy Traefik using Docker Compose:
+Deploy Traefik using Docker Compose
+
+Github: [docker-compose.yml](https://github.com/Jellayy/jellayy.github.io/tree/master/resources/2022-09-25-traefik/traefik/docker-compose.yml)
 
 {% highlight yaml %}
 version: '3'
@@ -263,7 +277,7 @@ storage:
 
 - Setup email notifier for forgotten passwords.
 
-    I won't be covering how to get this setup with SMTP. There are simple ways to do this through your gmail account or other providers. You can also write these notifications to a local file, which isn't recommended for any amount of users over one.
+I won't be covering how to get this setup with SMTP. There are simple ways to do this through your gmail account or other providers. You can also write these notifications to a local file, which isn't recommended for any amount of users over one.
 
 {% highlight yaml %}
 notifier:
@@ -370,3 +384,7 @@ networks:
 {% endhighlight %}
 
 > With version 2.5 of traefik, you'll get Traefik logs saying `middleware \"authelia@docker\" does not exist`. These logs are a lie. This is apparently a known issue and Authelia is working correctly if you see these. I have not tested to see if this is fixed in newer versions.
+
+### Updating access_control
+
+It is likely that as you add services to Authelia, you may need to update the `access_control` section of your `configuration.yml`. By default, the config is set to deny access to undefined addresses, resulting in a `403: forbidden` when you visit the site.
