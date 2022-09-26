@@ -217,86 +217,44 @@ authelia
 │   users_database.yml 
 {% endhighlight %}
 
-Here is an example `configuration.yml` file to get started. There are quite a few things to configure in here, but for now just focus on creating a `jwt_secret` and changing the `default_redirection_url` to the address you will create with Traefik for Authelia.
+#### configuration.yml
+
+Github: [configuration.yml](https://github.com/Jellayy/jellayy.github.io/blob/master/resources/2022-09-25-traefik/authelia/configuration.yml)
+
+There's a lot of stuff to configure in here, but to get started there's only a few things we need to do:
+
+1. Create a `jwt_secret`, an alphanumeric key of 64 characters
 
 {% highlight yaml %}
----
-###############################################################
-#                   Authelia configuration                    #
-###############################################################
-
-jwt_secret: a_very_important_secret
-default_redirection_url: https://public.example.com
-
-server:
-  host: 0.0.0.0
-  port: 9091
-
-log:
-  level: debug
-# This secret can also be set using the env variables AUTHELIA_JWT_SECRET_FILE
-
-totp:
-  issuer: authelia.com
-
-# duo_api:
-#  hostname: api-123456789.example.com
-#  integration_key: ABCDEF
-#  # This secret can also be set using the env variables AUTHELIA_DUO_API_SECRET_KEY_FILE
-#  secret_key: 1234567890abcdefghifjkl
-
-authentication_backend:
-  file:
-    path: /config/users_database.yml
-    password:
-      algorithm: argon2id
-      iterations: 1
-      salt_length: 16
-      parallelism: 8
-      memory: 64
-
-access_control:
-  default_policy: deny
-  rules:
-    # Rules applied to everyone
-    - domain: public.example.com
-      policy: bypass
-    - domain: traefik.example.com
-      policy: one_factor
-    - domain: secure.example.com
-      policy: two_factor
-
-session:
-  name: authelia_session
-  # This secret can also be set using the env variables AUTHELIA_SESSION_SECRET_FILE
-  secret: unsecure_session_secret
-  expiration: 3600  # 1 hour
-  inactivity: 300  # 5 minutes
-  domain: example.com  # Should match whatever your root protected domain is
-
-  redis:
-    host: redis
-    port: 6379
-    # This secret can also be set using the env variables AUTHELIA_SESSION_REDIS_PASSWORD_FILE
-    # password: authelia
-
-regulation:
-  max_retries: 3
-  find_time: 120
-  ban_time: 300
-
-storage:
-  encryption_key: you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this
-  local:
-    path: /config/db.sqlite3
-
-notifier:
-  smtp:
-    username: test
-    # This secret can also be set using the env variables AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE
-    password: password
-    host: mail.example.com
-    port: 25
-    sender: admin@example.com
-...
+jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
 {% endhighlight %}
+
+> I know what the top of the site says, but please make your own and don't copy paste this
+
+2. Change the `default_redirection_url` to the address you will give Authelia in Traefik
+
+{% highlight yaml %}
+default_redirection_url: https://auth.example.com
+{% endhighlight %}
+
+#### users_database.yml
+
+Github: [users_database.yml](https://github.com/Jellayy/jellayy.github.io/blob/master/resources/2022-09-25-traefik/authelia/users_database.yml)
+
+Create your first user with the steps below:
+
+1. Change your displayname:
+
+{% highlight yaml %}
+users:
+  example:
+    displayname: "Example"
+{% endhighlight %}
+
+2. Change your hashed password:
+
+{% highlight yaml %}
+password: "$6$rounds=50000$BpLnfgDsc2WD8F2q$Zis.ixdg9s/UOJYrs56b5QEZFiZECu0qZVNsIYxBaNJ7ucIL.nlxVCT5tqh8KHG8X4tlwCFm5r6NTOZZ5qRFN/"  # yamllint disable-line rule:line-length
+{% endhighlight %}
+
+> Authelia provides a tool for creating hashed passwords using the proper hashing algorithm. Generate a password by running `docker run authelia/authelia:latest authelia hash-password 'YOUR_PASSWORD'`
