@@ -14,6 +14,7 @@ tags:
 Reverse Proxies and setting up authentication on them can be very hard to wrap your head around and get working at first. While I did my best and will continue to make this guide as comprehensive as possible, there are a few resources that made this guide possible:
 
 [Joshua Avalon - Setup Traefik v2 Step by Step](https://joshuaavalon.io/setup-traefik-v2-step-by-step)
+
 [Techno Tim - 2 Factor Auth and Single Sign on with Authelia](https://docs.technotim.live/posts/authelia-traefik/)
 
 # Prerequisites
