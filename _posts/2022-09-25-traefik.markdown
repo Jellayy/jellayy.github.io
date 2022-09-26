@@ -221,9 +221,9 @@ authelia
 
 Github: [configuration.yml](https://github.com/Jellayy/jellayy.github.io/blob/master/resources/2022-09-25-traefik/authelia/configuration.yml)
 
-There's a lot of stuff to configure in here, but to get started there's only a few things we need to do:
+There's a lot of stuff to configure in here, but to get started there's only a few things we need to do
 
-- Create a `jwt_secret`, an alphanumeric key of 64 characters
+- Create a `jwt_secret`, an alphanumeric key of 64 characters:
 
 {% highlight yaml %}
 jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
@@ -236,6 +236,40 @@ jwt_secret: DHUAov7n9VTchKhgP5XRjraZdD6qJq2ck8SeMWjy2J5memk7JUwZEuZAoxKHkC7i
 {% highlight yaml %}
 default_redirection_url: https://auth.example.com
 {% endhighlight %}
+
+- Change the provided `access_control` policy. The provided configuration shows you how to specify different levels of auth on different domains, but I'm going to enable two-factor for everything
+
+{% highlight yaml %}
+access_control:
+  default_policy: deny
+  rules:
+    # Rules applied to everyone
+    - domain: example.com
+      policy: two_factor
+{% endhighlight %}
+
+- Update the domain in the `session` section to the domain you're protecting
+
+{% highlight yaml %}
+domain: example.com  # Should match whatever your root protected domain is
+{% endhighlight %}
+
+- Generate an encryption key for sqlite storage
+
+{% highlight yaml %}
+storage:
+  encryption_key: you_must_generate_a_random_string_of_more_than_twenty_chars_and_configure_this
+{% endhighlight %}
+
+- Setup email notifier for forgotten passwords.
+
+    I won't be covering how to get this setup with SMTP. There are simple ways to do this through your gmail account or other providers. You can also write these notifications to a local file, which isn't recommended for any amount of users over one.
+
+    {% highlight yaml %}
+    notifier:
+      filesystem:
+          filename: /config/notification.txt
+    {% endhighlight %}
 
 #### users_database.yml
 
@@ -258,3 +292,9 @@ password: "$argon2id$v=19$m=65536,t=3,p=4$d3hKRUpCSUhLMEhxVXdoZg$eChQ4l0qnt4oCE7
 {% endhighlight %}
 
 > Authelia provides a tool for creating hashed passwords using the proper hashing algorithm. Generate a password by running `docker run authelia/authelia:latest authelia hash-password 'YOUR_PASSWORD'`
+
+- Change your email address:
+
+{% highlight yaml %}
+email: example@example.com
+{% endhighlight %}
