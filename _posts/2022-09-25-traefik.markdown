@@ -67,6 +67,12 @@ traefik
 └───dynamic
 {% endhighlight %}
 
+Traefik also requires strict permissions on the `acme.json` file
+
+{% highlight bash %}
+sudo chmod 600 acme.json
+{% endhighlight %}
+
 ### traefik.yml
 
 Below is an example basic configuration of `traefik.yml` that will serve our purposes for now
