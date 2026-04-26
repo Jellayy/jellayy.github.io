@@ -2,21 +2,22 @@
 title: Austin Lynn Huffman
 toc: false
 ---
-<center>Software Engineer • Car Enthusiast • Homelab Tinkerer</center>
+<center>Software Engineer • Automotive Enthusiast • Homelabber</center>
 
 ## About Me
 
-Hey! I'm a full-stack dev working on AWS Infrastructure by day, and a car enthusiast by... well, also by day (don't tell my boss). When I'm not working on cloud architecture and deployment, I'm usually messing with my homelab or sinking way too much money into my cars.
+Hey! I'm a full-stack dev working on infrastructure for AWS and my own local lab. When I'm not chasing down errors, I'm usually either working on my own cars or taking pictures of other people's cool cars.
 
 ## Links
 
 {{< cards >}}
-  {{< card link="https://github.com/jellayy" title="Github" icon="github" >}}
-  {{< card link="https://hub.docker.com/u/jellayy" title="Docker Hub" icon="terminal" >}}
-  {{< card link="https://www.linkedin.com/in/austinlynnhuffman" title="Linkedin" icon="linkedin" >}}
-  {{< card link="https://www.youtube.com/@alhuff_" title="Youtube" icon="youtube" >}}
-  {{< card link="https://photos.alhuff.com" title="Photography" icon="camera" >}}
-  {{< card link="https://www.instagram.com/alhuff_" title="Instagram" icon="instagram" >}}
+    {{< card link="https://gitlab.com/jellayy" title="Gitlab" icon="gitlab" >}}
+    {{< card link="https://github.com/jellayy" title="Github" icon="github" >}}
+    {{< card link="https://hub.docker.com/u/jellayy" title="Docker Hub" icon="terminal" >}}
+    {{< card link="https://www.linkedin.com/in/austinlynnhuffman" title="Linkedin" icon="linkedin" >}}
+    {{< card link="https://www.youtube.com/@alhuff_" title="Youtube" icon="youtube" >}}
+    {{< card link="https://photos.alhuff.com" title="Photography" icon="camera" >}}
+    {{< card link="https://www.instagram.com/alhuff_" title="Instagram" icon="instagram" >}}
 {{< /cards >}}
 
 ## Blog Posts

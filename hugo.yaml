@@ -1,5 +1,5 @@
 # Hugo configuration file
-title: Austin Lynn Huffman
+title: alhuff.com
 
 # import hextra as module
 module:
@@ -38,13 +38,18 @@ menu:
       weight: 4
       params:
         type: search
-    - name: GitHub
+    - name: GitLab
       weight: 5
+      url: "https://gitlab.com/jellayy"
+      params:
+        icon: gitlab
+    - name: GitHub
+      weight: 6
       url: "https://github.com/jellayy"
       params:
         icon: github
     - name: YouTube
-      weight: 6
+      weight: 7
       url: "https://www.youtube.com/@alhuff_"
       params:
         icon: youtube

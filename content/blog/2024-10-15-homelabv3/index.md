@@ -1,6 +1,6 @@
 ---
 title: Homelab V3 - Low Power Edition
-description: In my latest homelab iteration, I've shifted from raw power to efficiency by replacing power-hungry enterprise servers with compact mini-PCs. This major overhaul reduced power consumption by over 50%—from 386W down to just 180W—while actually improving performance through newer architecture. The new setup features HP Elitedesks with efficient laptop CPUs, a ProLiant Microserver for storage, and my old R720 repurposed as an offsite backup solution in a datacenter colocation.
+description: In my latest homelab iteration, I've shifted from raw power to efficiency by replacing power-hungry enterprise servers with compact mini-PCs. This major overhaul reduced power consumption by over 50%, from 386W down to just 180W, while actually improving performance through newer architecture. The new setup features HP Elitedesks with efficient laptop CPUs, a ProLiant Microserver for storage, and my old R720 repurposed as an offsite backup solution in a datacenter colocation.
 date: 2024-10-15
 authors:
   - name: Austin Lynn Huffman
@@ -11,58 +11,69 @@ tags:
 - homelab updates
 ---
 
-## New Goals: From Power to Efficiency
+## Homelab V2 sucked up way too much power
 
-Gone are the carefree days of tapping into free electricity in my college dorms. Now, I face the harsh reality of managing power consumption and heat output in my homelab, especially during scorching Arizona summers. I don't have a post up on Homelab V2 because I can't seem to find any good pictures but it *sucked* power.
+Gone are the carefree days of tapping into free electricity in my college dorms. Now, I face the harsh reality of managing power consumption and heat output in my homelab, especially during Arizona summers. I don't have a post up on Homelab V2 because I can't seem to find any good pictures but it *sucked* power.
 
 Homelab V2 mainly consisted of two servers:
 
-1. My custom-built Proxmox server from Homelab V1, featuring dual Xeon E5-2658V2 CPUs
-1. A Dell PowerEdge R720 with a similar dual-socket setup and at least 112GB of RAM
+1. My custom-built Proxmox server from Homelab V1, with dual Xeon E5-2658V2 CPUs
+1. A Dell PowerEdge R720 with a similar dual-socket setup and about 112GB of RAM
 
-The custom build sported a 500W consumer PSU, while the Dell had dual 1200W power supplies. The Dell especially was infamously loud.
+These enterprise-grade servers offered unbeatable core counts, RAM, and storage options for their price. However, their inefficiency became a glaring issue that needed a solution.
 
-These enterprise-grade servers offered unbeatable core counts, RAM, and storage options for their price. However, their inefficiency became a glaring issue that demanded a solution.
+## Shifting to Efficiency in Homelab V3
 
-## The Shift to Efficiency: Homelab V3
+For Homelab V3, I focused on power efficiency first. The giant, loud enterprise hardware had to go, in it's place went consumer-grade mini PCs you'd see in offices. These guys get surplus auctioned in huge numbers and have a lot of advantages over older server hardware:
 
-Homelab V3 marks a paradigm shift, prioritizing power efficiency over raw performance. Out went the hulking enterprise hardware, in came comsumer-grade mini-PCs housing laptop chips. These compact devices offer several advantages:
-
-- Availability: They're often liquidated by businesses, making them readily available on eBay at attractive prices
-- Modern Architecture: Despite lower thread counts, they feature newer generation processors (often 8th and 9th gen Intel i7s)
-- Improved Performance: Their signifigantly faster single-core performance more than compensates for the reduced thread count.
-- Power Consumption: This is the kicker. Even with all these benefits, the CPUs in these machines boast ~35W TDPs.
+- **Availability:** They're often liquidated by offices, making them readily available on eBay at low prices
+- **Modern Architecture:** Despite lower thread counts, they feature newer generation processors (often 8th and 9th gen Intel i7s). Thanks to this, overall performance is much higher compared to older Xeons.
+- **Power Consumption:** The best part about laptop CPUs: ~35W TDPs
+- **Space:** They're also pretty dang small, which means I don't need a bunch of rack space for servers
 
 My new setup now includes:
 
-- Two HP Elitedesk 800 G4 Mini-PCs
+- **2 HP Elitedesk 800 G4 Mini-PCs:**
   
   These are going to be the new compute workhorses of the lab, and they're pretty well equipped to do so.
+
+  <br>
+
   - CPUs: Intel i5-8500T
   - RAM: 16GB
   - Storage: 256GB SSD
   - Price: Acquired a year apart, first for $200, second for just $95
 
-- HP ProLiant Microserver Gen 8
+  <br>
+
+- **HP ProLiant Microserver Gen 8:**
   
   The Elitedesks can't offer any mass storage capabilities for the lab, so I needed a separate NAS.
+
+  <br>
+
   - CPU: Xeon E3-1265L V2 (Upgraded from the stock Celeron G1610T)
   - RAM: 16GB
   - Backplane: 4 SAS-Capable Bays after an HBA swap
   - Storage: 4 8TB SAS HDDs & 1 500GB Boot SSD
   - Out-of-band Management
 
-  This server ended up being a great candidate for a small and efficient dedicated TrueNAS box. I'm pretty sure the drives I have in it are the main power draw.
+  <br>
 
-- Semi-Custom 1U Build
+- **Semi-Custom 1U Build:**
   
   This was a carry-over from Homelab V2 and previously served as my pfSense router. Now it runs all the monitoring for the lab.
+
+  <br>
+
   - Motherboard: Some ASRock Rack Embedded Product
   - CPU: Atom C2750
   - RAM: 8GB
   - Case: Supermicro 1U
 
-- 2018 Mac Mini
+  <br>
+
+- **2018 Mac Mini**
   
   This basically *just* runs FindMyHistory, a community script I've contributed to that stores historic tracking data for your AirTags. Otherwise, a Mac Mini is an absolutely horrible server, a complete pain to run headlessly, and something I wouldn't wish on my worst enemy.
 
